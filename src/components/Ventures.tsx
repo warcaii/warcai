@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 const ventures = [
   {
     name: "WARCAI",
-    description: "A dual-focused AI venture featuring an intelligent chat agent similar to ChatGPT for conversational AI, and an advanced image generation platform powered by Stable Diffusion technology.",
+    description: "An intelligent AI platform with dual capabilities: a smart chat agent that aggregates multiple AI APIs to deliver the best response for each query, and an advanced image generation system powered by Stable Diffusion technology.",
     role: "Founder",
     year: "2023",
   },
