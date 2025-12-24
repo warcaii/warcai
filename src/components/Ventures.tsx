@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+
 
 const ventures = [
   {
@@ -47,13 +47,13 @@ const Ventures = () => {
           {ventures.map((venture, index) => (
             <div
               key={venture.name}
-              className="group py-10 border-t border-background/20 last:border-b cursor-pointer hover-lift"
+              className="group py-10 border-t border-background/20 last:border-b"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex-1">
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-mono text-xs text-background/50">0{index + 1}</span>
-                    <h3 className="text-display text-4xl md:text-5xl group-hover:tracking-wider transition-all duration-500">
+                    <h3 className="text-display text-4xl md:text-5xl">
                       {venture.name}
                     </h3>
                   </div>
@@ -62,14 +62,9 @@ const Ventures = () => {
                   </p>
                 </div>
                 
-                <div className="flex items-center gap-8">
-                  <div className="text-right">
-                    <p className="text-mono text-xs text-background/50 uppercase tracking-wider">{venture.role}</p>
-                    <p className="text-mono text-sm">{venture.year}</p>
-                  </div>
-                  <div className="w-12 h-12 border border-background/30 flex items-center justify-center group-hover:bg-background group-hover:text-foreground transition-all duration-300">
-                    <ArrowUpRight className="w-5 h-5" />
-                  </div>
+                <div className="text-right">
+                  <p className="text-mono text-xs text-background/50 uppercase tracking-wider">{venture.role}</p>
+                  <p className="text-mono text-sm">{venture.year}</p>
                 </div>
               </div>
             </div>
