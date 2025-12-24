@@ -36,7 +36,7 @@ const Hero = () => {
         
         {/* Accent line with gradient */}
         <div 
-          className="w-32 h-1 bg-gradient-to-r from-accent to-accent/50 mb-8 opacity-0 animate-fade-in"
+          className="w-32 h-0.5 bg-gradient-to-r from-accent to-transparent mb-8 opacity-0 animate-fade-in animate-line-pulse"
           style={{ animationDelay: '0.4s' }}
         />
         
@@ -76,7 +76,7 @@ const Hero = () => {
         style={{ animationDelay: '1.2s' }}
       >
         <span className="text-mono text-xs tracking-widest uppercase text-muted-foreground">Explore</span>
-        <div className="w-px h-16 bg-gradient-to-b from-accent to-transparent" />
+        <div className="w-px h-16 bg-gradient-to-b from-accent to-transparent animate-line-flow" />
       </div>
     </section>
   );
