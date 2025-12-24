@@ -9,7 +9,7 @@ const ventures = [
   },
   {
     name: "TEAM OG",
-    description: "A collective of original creators pushing boundaries in digital content. Focusing on authentic storytelling and visual innovation.",
+    description: "A collective of some of the best designers in the field, focused on creating stunning visuals and brand identities for gaming communities. Operations closed in 2022.",
     role: "Co-Founder",
     year: "2022",
   },
