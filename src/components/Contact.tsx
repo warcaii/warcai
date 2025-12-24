@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail, Linkedin, Twitter } from "lucide-react";
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 
 const Contact = () => {
   return (
@@ -8,14 +9,16 @@ const Contact = () => {
       
       <div className="max-w-6xl mx-auto relative">
         {/* Section Header */}
-        <div className="flex items-center gap-6 mb-20">
-          <div className="accent-dot" />
-          <span className="text-mono text-xs tracking-widest uppercase text-accent">04 — Contact</span>
-          <div className="h-px flex-1 bg-border" />
-        </div>
+        <ScrollReveal>
+          <div className="flex items-center gap-6 mb-20">
+            <div className="accent-dot" />
+            <span className="text-mono text-xs tracking-widest uppercase text-accent">04 — Contact</span>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-          <div>
+          <ScrollReveal delay={0.1}>
             <h2 className="text-display text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
               LET'S
               <br />
@@ -23,46 +26,50 @@ const Contact = () => {
               <br />
               TOGETHER
             </h2>
-          </div>
+          </ScrollReveal>
 
           <div className="flex flex-col justify-end">
-            <p className="text-mono text-base text-muted-foreground leading-relaxed mb-12">
-              Got a project in mind? Looking to collaborate on something innovative? 
-              I'm always open to discussing new ideas and creative opportunities.
-            </p>
+            <ScrollReveal delay={0.2}>
+              <p className="text-mono text-base text-muted-foreground leading-relaxed mb-12">
+                Got a project in mind? Looking to collaborate on something innovative? 
+                I'm always open to discussing new ideas and creative opportunities.
+              </p>
+            </ScrollReveal>
 
-            <div className="space-y-4">
-              <a
-                href="mailto:hello@devansh.com"
-                className="group flex items-center justify-between py-5 border-b border-border hover:border-accent transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <Mail className="w-4 h-4 text-accent" />
-                  <span className="text-mono text-sm group-hover:text-accent transition-colors">hello@devansh.com</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </a>
-              <a
-                href="#"
-                className="group flex items-center justify-between py-5 border-b border-border hover:border-accent transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <Linkedin className="w-4 h-4 text-accent" />
-                  <span className="text-mono text-sm group-hover:text-accent transition-colors">LinkedIn</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </a>
-              <a
-                href="#"
-                className="group flex items-center justify-between py-5 border-b border-border hover:border-accent transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <Twitter className="w-4 h-4 text-accent" />
-                  <span className="text-mono text-sm group-hover:text-accent transition-colors">Twitter / X</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </a>
-            </div>
+            <ScrollReveal delay={0.3}>
+              <div className="space-y-4">
+                <a
+                  href="mailto:hello@devansh.com"
+                  className="group flex items-center justify-between py-5 border-b border-border hover:border-accent transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <Mail className="w-4 h-4 text-accent" />
+                    <span className="text-mono text-sm group-hover:text-accent transition-colors">hello@devansh.com</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </a>
+                <a
+                  href="#"
+                  className="group flex items-center justify-between py-5 border-b border-border hover:border-accent transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <Linkedin className="w-4 h-4 text-accent" />
+                    <span className="text-mono text-sm group-hover:text-accent transition-colors">LinkedIn</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </a>
+                <a
+                  href="#"
+                  className="group flex items-center justify-between py-5 border-b border-border hover:border-accent transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <Twitter className="w-4 h-4 text-accent" />
+                    <span className="text-mono text-sm group-hover:text-accent transition-colors">Twitter / X</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </a>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </div>
