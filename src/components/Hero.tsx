@@ -28,10 +28,18 @@ const Hero = () => {
         
         {/* Main Title */}
         <h1 
-          className="text-display text-[3.5rem] sm:text-7xl md:text-9xl lg:text-[11rem] leading-[0.9] tracking-tight mb-4 opacity-0 animate-fade-in text-shimmer"
+          className="text-display text-[3.5rem] sm:text-7xl md:text-9xl lg:text-[11rem] leading-[0.9] tracking-tight mb-4 opacity-0 animate-fade-in"
           style={{ animationDelay: '0.3s' }}
         >
-          DEVANSH
+          {'DEVANSH'.split('').map((letter, i) => (
+            <span 
+              key={i} 
+              className="inline-block animate-letter-float"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              {letter}
+            </span>
+          ))}
         </h1>
         
         {/* Accent line with gradient */}
