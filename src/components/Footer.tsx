@@ -75,28 +75,27 @@ const Footer = () => {
             <ScrollReveal delay={0.1} direction="up">
               <h4 className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-6">Connect</h4>
             </ScrollReveal>
-            <ul className="flex flex-wrap gap-3">
-              {socialLinks.map((link, index) => (
-                <ScrollReveal key={link.label} delay={0.15 + index * 0.1} direction="right">
-                  <li>
-                    <a 
-                      href={link.href}
-                      className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm text-foreground/80 
-                        border border-border/40 rounded-full
-                        bg-background/50 backdrop-blur-sm
-                        shadow-[0_0_8px_rgba(255,255,255,0.05)]
-                        hover:shadow-[0_0_16px_rgba(255,255,255,0.12)]
-                        hover:border-accent/40 hover:text-accent
-                        hover:-translate-y-0.5
-                        transition-all duration-300"
-                    >
-                      {link.label}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-                    </a>
-                  </li>
-                </ScrollReveal>
-              ))}
-            </ul>
+            <ScrollReveal delay={0.2} direction="up">
+              <div className="flex flex-wrap gap-3">
+                {socialLinks.map((link) => (
+                  <a 
+                    key={link.label}
+                    href={link.href}
+                    className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm text-foreground/80 
+                      border border-border/40 rounded-full
+                      bg-background/50 backdrop-blur-sm
+                      shadow-[0_0_8px_rgba(255,255,255,0.05)]
+                      hover:shadow-[0_0_16px_rgba(255,255,255,0.12)]
+                      hover:border-accent/40 hover:text-accent
+                      hover:-translate-y-0.5
+                      transition-all duration-300"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                  </a>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </div>
 
