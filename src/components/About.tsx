@@ -44,6 +44,13 @@ const About = () => {
               <div className="p-8 border border-accent/20 bg-accent/5 rounded-2xl backdrop-blur-sm mb-8">
                 <p className="text-mono text-6xl md:text-7xl font-bold text-accent">3+</p>
                 <p className="text-mono text-sm tracking-widest uppercase text-muted-foreground mt-2">Years of Experience</p>
+                
+                {/* Quote inside stats card */}
+                <div className="mt-6 pt-6 border-t border-accent/20">
+                  <p className="text-base italic text-muted-foreground">
+                    "The best designs emerge when technology amplifies human vision."
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
             
@@ -56,18 +63,6 @@ const About = () => {
                   With three years of experience in graphic design and video editing, I've developed a keen 
                   eye for aesthetics that translate across digital mediums.
                 </p>
-              </div>
-            </ScrollReveal>
-
-            {/* Quote */}
-            <ScrollReveal delay={0.3} direction="left">
-              <div className="mt-10 relative">
-                <div className="absolute -left-4 top-0 text-6xl text-accent/20 font-display">"</div>
-                <blockquote className="pl-8 py-4 border-l-2 border-accent/30">
-                  <p className="text-lg italic text-muted-foreground">
-                    The best designs emerge when technology amplifies human vision.
-                  </p>
-                </blockquote>
               </div>
             </ScrollReveal>
           </div>
