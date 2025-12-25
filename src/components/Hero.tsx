@@ -1,4 +1,5 @@
 import { ParticleField } from './ParticleField';
+import { CountUp } from './CountUp';
 
 const Hero = () => {
   return (
@@ -66,15 +67,15 @@ const Hero = () => {
           {/* Mobile & Tablet: Responsive grid */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:hidden">
             {[
-              { label: 'Years', value: '03' },
-              { label: 'Ventures', value: '04' },
+              { label: 'Years', value: 3 },
+              { label: 'Ventures', value: 4 },
               { label: 'Ideas', value: '∞' }
             ].map((stat, index) => (
               <div 
                 key={index}
                 className="bg-foreground/5 border border-border/30 rounded-lg p-3 sm:p-5 text-center"
               >
-                <p className="text-display text-3xl sm:text-5xl font-bold text-foreground mb-1">{stat.value}</p>
+                <CountUp end={stat.value} className="text-display text-3xl sm:text-5xl font-bold text-foreground mb-1 block" />
                 <p className="text-mono text-[8px] sm:text-[10px] tracking-widest uppercase text-muted-foreground">{stat.label}</p>
               </div>
             ))}
@@ -86,7 +87,7 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <p className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-4">Years Experience</p>
-              <p className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors">03</p>
+              <CountUp end={3} className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors block" />
               <div className="w-full h-px bg-gradient-to-r from-foreground/50 to-transparent mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </div>
             
@@ -94,7 +95,7 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <p className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-4">Ventures Founded</p>
-              <p className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors">04</p>
+              <CountUp end={4} className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors block" />
               <div className="w-full h-px bg-gradient-to-r from-foreground/50 to-transparent mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </div>
             
@@ -102,7 +103,7 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <p className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-4">Ideas Brewing</p>
-              <p className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors">∞</p>
+              <CountUp end="∞" className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors block" />
               <div className="w-full h-px bg-gradient-to-r from-foreground/50 to-transparent mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </div>
           </div>
