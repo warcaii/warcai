@@ -65,16 +65,21 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border">
-          <div className="px-6 py-8 space-y-6">
-            {navItems.map((item) => (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-xl border-b border-accent/20">
+          <div className="px-8 py-10 space-y-2">
+            {navItems.map((item, index) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block text-display text-3xl hover:text-accent transition-colors"
+                className="group flex items-center gap-4 py-4 border-b border-border/30 last:border-b-0 transition-all duration-300 hover:pl-2"
               >
-                {item.label}
+                <span className="text-mono text-xs text-accent/60 group-hover:text-accent transition-colors">
+                  0{index + 1}
+                </span>
+                <span className="text-display text-4xl font-medium tracking-tight text-foreground group-hover:text-accent transition-colors">
+                  {item.label}
+                </span>
               </a>
             ))}
           </div>
