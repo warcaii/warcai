@@ -32,8 +32,8 @@ const About = () => {
             <ScrollReveal delay={0.1} direction="left">
               <h2 className="text-display text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tight">
                 <span className="block text-foreground">DESIGN</span>
-                <span className="block text-gradient my-2">+</span>
-                <span className="block text-foreground">AI</span>
+                <span className="block text-accent text-4xl md:text-5xl my-4">×</span>
+                <span className="block text-gradient">AI</span>
               </h2>
             </ScrollReveal>
             
