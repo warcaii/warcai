@@ -1,113 +1,203 @@
-import { ParticleField } from './ParticleField';
+import { useEffect, useState } from 'react';
 
 const Hero = () => {
+  const [mounted, setMounted] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <section className="min-h-screen flex flex-col justify-center section-padding relative overflow-hidden">
-      {/* 3D Particle Background */}
-      <ParticleField />
-      
-      {/* Background effects */}
-      <div className="absolute inset-0 grid-lines opacity-10" />
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-accent/15 rounded-full blur-2xl animate-float" />
-      
-      <div className="relative z-10 max-w-6xl">
-        {/* Accent dot */}
+    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-background">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+        }} />
+      </div>
+
+      {/* Floating orbs */}
+      <div 
+        className="absolute w-[600px] h-[600px] rounded-full opacity-[0.02] blur-3xl"
+        style={{
+          background: 'radial-gradient(circle, hsl(var(--foreground)) 0%, transparent 70%)',
+          transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+          transition: 'transform 0.3s ease-out',
+          top: '10%',
+          right: '-10%',
+        }}
+      />
+      <div 
+        className="absolute w-[400px] h-[400px] rounded-full opacity-[0.015] blur-2xl"
+        style={{
+          background: 'radial-gradient(circle, hsl(var(--foreground)) 0%, transparent 70%)',
+          transform: `translate(${-mousePosition.x * 0.5}px, ${-mousePosition.y * 0.5}px)`,
+          transition: 'transform 0.5s ease-out',
+          bottom: '20%',
+          left: '-5%',
+        }}
+      />
+
+      {/* Main content */}
+      <div className="relative z-10 text-center px-6 max-w-5xl">
+        {/* Top line */}
         <div 
-          className="accent-dot mb-8 opacity-0 animate-fade-in"
-          style={{ animationDelay: '0.1s' }}
-        />
-        
-        {/* Eyebrow */}
-        <p 
-          className="text-mono text-sm tracking-widest uppercase text-muted-foreground mb-6 opacity-0 animate-fade-in"
-          style={{ animationDelay: '0.2s' }}
+          className={`flex items-center justify-center gap-4 mb-12 transition-all duration-1000 ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '0.1s' }}
         >
-          AI Enthusiast & Creative Director
-        </p>
-        
-        {/* Main Title */}
-        <h1 
-          className="text-display text-[3.5rem] sm:text-7xl md:text-9xl lg:text-[11rem] leading-[0.9] tracking-tight mb-4 opacity-0 animate-fade-in"
-          style={{ animationDelay: '0.3s' }}
-        >
-          {'DEVANSH'.split('').map((letter, i) => (
-            <span 
-              key={i} 
-              className="inline-block animate-letter-float"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              {letter}
-            </span>
-          ))}
-        </h1>
-        
-        {/* Accent line with gradient */}
-        <div 
-          className="w-32 h-0.5 bg-gradient-to-r from-accent to-transparent mb-8 opacity-0 animate-fade-in animate-line-pulse"
-          style={{ animationDelay: '0.4s' }}
-        />
-        
+          <div className="w-12 h-px bg-foreground/30" />
+          <span className="text-mono text-xs tracking-[0.3em] uppercase text-muted-foreground">
+            Creative Director
+          </span>
+          <div className="w-12 h-px bg-foreground/30" />
+        </div>
+
+        {/* Main name */}
+        <div className="relative mb-8">
+          <h1 
+            className={`text-display text-[4rem] sm:text-[7rem] md:text-[10rem] lg:text-[14rem] font-bold leading-[0.85] tracking-[-0.04em] transition-all duration-1000 ${
+              mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '0.2s' }}
+          >
+            {'DEVANSH'.split('').map((letter, i) => (
+              <span 
+                key={i} 
+                className="inline-block hover:text-muted-foreground transition-colors duration-300 cursor-default"
+                style={{
+                  animation: mounted ? `letterReveal 0.8s ease-out ${i * 0.05}s forwards` : 'none',
+                  opacity: 0,
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+          </h1>
+          
+          {/* Underline accent */}
+          <div 
+            className={`absolute -bottom-2 left-1/2 h-1 bg-foreground transition-all duration-1000 ease-out ${
+              mounted ? 'w-24 -translate-x-1/2' : 'w-0 -translate-x-1/2'
+            }`}
+            style={{ transitionDelay: '0.8s' }}
+          />
+        </div>
+
         {/* Subtitle */}
         <p 
-          className="text-mono text-lg md:text-xl max-w-lg text-muted-foreground leading-relaxed opacity-0 animate-fade-in"
-          style={{ animationDelay: '0.5s' }}
+          className={`text-mono text-base md:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed transition-all duration-1000 ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '0.6s' }}
         >
-          Building at the intersection of <span className="text-foreground">design</span>, 
-          <span className="text-foreground"> technology</span>, and 
-          <span className="text-accent"> artificial intelligence</span>.
+          Building at the intersection of{' '}
+          <span className="text-foreground font-medium">design</span>,{' '}
+          <span className="text-foreground font-medium">technology</span>, and{' '}
+          <span className="text-foreground font-medium">AI</span>.
         </p>
-        
-        {/* Stats */}
-        <div 
-          className="mt-12 md:mt-20 opacity-0 animate-fade-in max-w-4xl"
-          style={{ animationDelay: '0.7s' }}
-        >
-          {/* Mobile & Tablet: Responsive grid */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:hidden">
-            {[
-              { label: 'Years Experience', value: '03' },
-              { label: 'Ventures Founded', value: '04' },
-              { label: 'Ideas Brewing', value: '∞' }
-            ].map((stat, index) => (
-              <div 
-                key={index}
-                className="bg-foreground/5 border border-border/30 rounded-xl p-4 sm:p-8 text-center"
-              >
-                <p className="text-display text-5xl sm:text-7xl font-bold text-foreground mb-2">{stat.value}</p>
-                <p className="text-mono text-[9px] sm:text-xs tracking-widest uppercase text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
 
-          {/* Desktop: Original grid layout */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-6">
-            <div className="group relative border border-border/30 p-8 hover:border-foreground/50 transition-all duration-500 hover:bg-foreground/5">
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-4">Years Experience</p>
-              <p className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors">03</p>
-              <div className="w-full h-px bg-gradient-to-r from-foreground/50 to-transparent mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+        {/* Stats row */}
+        <div 
+          className={`mt-20 flex items-center justify-center gap-8 md:gap-16 transition-all duration-1000 ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '0.8s' }}
+        >
+          {[
+            { value: '03', label: 'Years' },
+            { value: '04', label: 'Ventures' },
+            { value: '∞', label: 'Ideas' },
+          ].map((stat, index) => (
+            <div key={index} className="group text-center">
+              <p className="text-display text-4xl md:text-6xl font-bold text-foreground group-hover:scale-110 transition-transform duration-300">
+                {stat.value}
+              </p>
+              <p className="text-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
+                {stat.label}
+              </p>
             </div>
-            
-            <div className="group relative border border-border/30 p-8 hover:border-foreground/50 transition-all duration-500 hover:bg-foreground/5">
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-4">Ventures Founded</p>
-              <p className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors">04</p>
-              <div className="w-full h-px bg-gradient-to-r from-foreground/50 to-transparent mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </div>
-            
-            <div className="group relative border border-border/30 p-8 hover:border-foreground/50 transition-all duration-500 hover:bg-foreground/5">
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="text-mono text-xs tracking-widest uppercase text-muted-foreground mb-4">Ideas Brewing</p>
-              <p className="text-display text-8xl font-bold text-foreground group-hover:text-foreground transition-colors">∞</p>
-              <div className="w-full h-px bg-gradient-to-r from-foreground/50 to-transparent mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </div>
-          </div>
+          ))}
+        </div>
+
+        {/* Scroll indicator */}
+        <div 
+          className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-1000 ${
+            mounted ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ transitionDelay: '1.2s' }}
+        >
+          <div className="w-px h-16 bg-gradient-to-b from-foreground/50 to-transparent animate-pulse" />
         </div>
       </div>
+
+      {/* Corner accents */}
+      <div 
+        className={`absolute top-8 left-8 transition-all duration-1000 ${
+          mounted ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ transitionDelay: '1s' }}
+      >
+        <div className="w-8 h-px bg-foreground/40" />
+        <div className="w-px h-8 bg-foreground/40" />
+      </div>
+      <div 
+        className={`absolute top-8 right-8 transition-all duration-1000 ${
+          mounted ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ transitionDelay: '1s' }}
+      >
+        <div className="w-8 h-px bg-foreground/40 ml-auto" />
+        <div className="w-px h-8 bg-foreground/40 ml-auto" />
+      </div>
+      <div 
+        className={`absolute bottom-8 left-8 transition-all duration-1000 ${
+          mounted ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ transitionDelay: '1s' }}
+      >
+        <div className="w-px h-8 bg-foreground/40" />
+        <div className="w-8 h-px bg-foreground/40" />
+      </div>
+      <div 
+        className={`absolute bottom-8 right-8 transition-all duration-1000 ${
+          mounted ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ transitionDelay: '1s' }}
+      >
+        <div className="w-px h-8 bg-foreground/40 ml-auto" />
+        <div className="w-8 h-px bg-foreground/40 ml-auto" />
+      </div>
+
+      {/* Add keyframe animation */}
+      <style>{`
+        @keyframes letterReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(40px) rotateX(-40deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };
