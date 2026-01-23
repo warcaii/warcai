@@ -19,7 +19,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-background">
+    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-background pt-20">
       {/* Animated grid background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
